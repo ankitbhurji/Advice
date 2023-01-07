@@ -44,7 +44,7 @@
     border: 0;
     border-top: 1px solid #444E5C;;
     background-color: #444E5C;
-    margin: 9px;
+    margin: 5px;
     display:inline-block;
   }
 
@@ -77,10 +77,15 @@
     outline: none;
   }
 
+ img{
+  margin-bottom: 2px;
+ }
 
   button :hover{
-    transform: scale(1.5);
-    transition: transform 0.2s;
+  transform: scale(1.5);
+    /* transition: transform 0.2s; */
+  transition: 500ms;
+  cursor:pointer;
   }
   
 
