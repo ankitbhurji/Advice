@@ -48,7 +48,6 @@ function AdviseGenerator(){
                         <div style={{display:"inline-block"}}> <img src={line} width="20" height="16"  alt="Italian Trulli" /> </div>
                         <div className={styles.line}></div>
                     </div>
-                    {/* <button onClick={ButtonClick} className={styles.link}><i className='fas fa-dice-five'></i></button>    */}
                     <button onClick={ButtonClick} className={styles.link}><img src={dice} width="30" height="30"  alt="Italian Trulli" /></button>   
                 </div>
             </div>
