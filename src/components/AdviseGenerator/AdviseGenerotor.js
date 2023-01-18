@@ -7,44 +7,48 @@ import line from '../../images/line.png'
 
 function AdviseGenerator(){
     
-    function ColorPicker(){
-        var x = Math.floor(Math.random() * 256);
-        var y = Math.floor(Math.random() * 256);
-        var z = Math.floor(Math.random() * 256);
-        var AdviserColor = "rgb(" + x + "," + y + "," + z + ")";
-        var BgColor = "rgb(" + x+1 + "," + y+1 + "," + z + ")";
+    const [adviceData, setAdviceData] = useState({
+        Setid:'',
+        Setadvice:'',
+        SetAdvisorClr:'',
+        SetBgClr:''
+    });
+    
 
-        document.getElementById('adviser').style.backgroundColor = AdviserColor;
-        document.body.style.background = BgColor;
-    }
+    var x = Math.floor(Math.random() * 256);
+    var y = Math.floor(Math.random() * 256);
+    var z = Math.floor(Math.random() * 256);
+    var AdviserColor = "rgb(" + x + "," + y + "," + z + ")";
+    var BgColor = "rgb(" + x+2 + "," + y+1 + "," + z + ")";
 
-
-    const [id, setId] = useState('')
-    const [advice, setAdvice] = useState('')
-
+    
     async function ButtonClick(){
         const ApiData = await AdviseApi();
         const id = ApiData.data.slip.id
         const advice = ApiData.data.slip.advice
-        setId(id);
-        setAdvice(advice);
-        ColorPicker();
-    }
-    
+        setAdviceData({
+            ...adviceData, 
+            Setid:id, 
+            Setadvice:advice,
+            SetAdvisorClr:AdviserColor,
+            SetBgClr: BgColor
+        });
+        document.body.style.background = adviceData.SetBgClr;
+    } 
 
     useEffect(()=>{
         ButtonClick();
     },[])
+    
 
     return(
         <div>
             <div >
-                <div id='adviser' className={styles.adviser}>
-                    <p className={styles.adviseId}>ADVICE # {id}</p>
-                    <p className={styles.advise}> "{advice}" </p>
+                <div style={{backgroundColor:adviceData.SetAdvisorClr}} className={styles.adviser}>
+                    <p className={styles.adviseId}>ADVICE # {adviceData.Setid}</p>
+                    <p className={styles.advise}> "{adviceData.Setadvice}" </p>
                     <div className={styles.bottom}>
                         <div className={styles.line}></div>
-                        {/* <div style={{display:"inline-block"}}>*</div> */}
                         <div style={{display:"inline-block"}}> <img src={line} width="20" height="16"  alt="Italian Trulli" /> </div>
                         <div className={styles.line}></div>
                     </div>
@@ -56,3 +60,6 @@ function AdviseGenerator(){
 }
 
 export default AdviseGenerator;
+
+
+
